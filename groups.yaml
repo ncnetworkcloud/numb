@@ -3,6 +3,8 @@
 devices:
   username: "admin"
   password: "admin"
+  data:
+    domain_name: "njrusmc.net"
 
 # Generic groups that includes login creds and platforms
 isr:

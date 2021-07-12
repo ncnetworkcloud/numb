@@ -120,7 +120,7 @@ def main(**kwargs):
         "umbrella_sites": umbrella_sites,
         "tunnel_src_intf": kwargs["tunnel_src_intf"],
         "tunnel_dest_ip": kwargs["tunnel_dest_ip"],
-        "tunnel_ulay_nhop": kwargs["tunnel_ulay_nhop"]
+        "tunnel_ulay_nhop": kwargs["tunnel_ulay_nhop"],
     }
     new_config = template.render(data=data)
 
@@ -152,9 +152,7 @@ def main(**kwargs):
             print(f"OK: Client-side SIG to {tun_dest} is up")
 
             # If the FIB entry to the Internet looks correct, continue
-            if "attached to Tunnel100" in conn.send_command(
-                "show ip cef 8.8.8.8"
-            ):
+            if "attached to Tunnel100" in conn.send_command("show ip cef 8.8.8.8"):
                 print("OK: Upstream default routing to Umbrella is correct")
 
                 # If the ping test through the SIG tunnel succeeds, continue
@@ -163,7 +161,7 @@ def main(**kwargs):
                 ):
                     print("OK: Ping to 8.8.8.8 succeeded")
                     break
-                    
+
                 print("FAIL: Ping to 8.8.8.8 failed")
 
             # Else, the FIB entry was not correct
@@ -216,8 +214,7 @@ def _generate_password(length=16):
 
     # Fill in the remaining N-3 characters
     pw_rest = [
-        random.choice(string.digits + string.ascii_letters)
-        for i in range(length - 3)
+        random.choice(string.digits + string.ascii_letters) for i in range(length - 3)
     ]
 
     # Randomize the letters and return the password as a string

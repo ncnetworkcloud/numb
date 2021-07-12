@@ -1,3 +1,4 @@
 nornir==3.1.1
 nornir-scrapli
 httpx
+jinja2
