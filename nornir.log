@@ -1,0 +1,58 @@
+2021-07-12 12:29:28,423 -  nornir.core -     INFO -        run() - Running task 'build_tunnel' with args {} on 2 hosts
+2021-07-12 12:29:28,423 - nornir.core.task -    ERROR -      start() - Host 'ISR1': task 'build_tunnel' failed with traceback:
+Traceback (most recent call last):
+  File "/home/centos/environments/umb/lib/python3.7/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "runbook.py", line 15, in build_tunnel
+    result = send_command(command="show inventory")
+TypeError: send_command() missing 1 required positional argument: 'task'
+
+2021-07-12 12:29:28,424 - nornir.core.task -    ERROR -      start() - Host 'ISR2': task 'build_tunnel' failed with traceback:
+Traceback (most recent call last):
+  File "/home/centos/environments/umb/lib/python3.7/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "runbook.py", line 15, in build_tunnel
+    result = send_command(command="show inventory")
+TypeError: send_command() missing 1 required positional argument: 'task'
+
+2021-07-12 12:29:58,086 -  nornir.core -     INFO -        run() - Running task 'build_tunnel' with args {} on 2 hosts
+2021-07-12 12:37:57,137 -  nornir.core -     INFO -        run() - Running task 'send_command' with args {'command': 'show inventory'} on 2 hosts
+2021-07-12 12:40:06,211 -  nornir.core -     INFO -        run() - Running task 'build_tunnel' with args {} on 2 hosts
+2021-07-12 13:01:01,444 -  nornir.core -     INFO -        run() - Running task 'send_command' with args {'command': 'show inventory'} on 2 hosts
+2021-07-12 13:08:35,659 -  nornir.core -     INFO -        run() - Running task 'load_yaml' with args {'file': 'umbrella_creds.yaml'} on 2 hosts
+2021-07-12 13:08:35,662 -  nornir.core -     INFO -        run() - Running task 'send_command' with args {'command': 'show inventory'} on 2 hosts
+2021-07-12 13:11:00,758 -  nornir.core -     INFO -        run() - Running task 'send_command' with args {'command': 'show inventory'} on 2 hosts
+2021-07-12 13:11:14,830 -  nornir.core -     INFO -        run() - Running task 'send_command' with args {'command': 'show inventory'} on 2 hosts
+2021-07-12 14:09:13,321 -  nornir.core -     INFO -        run() - Running task 'get_tunnels' with args {} on 1 hosts
+2021-07-12 14:09:13,322 - nornir.core.task -    ERROR -      start() - Host 'umbrella': task 'get_tunnels' failed with traceback:
+Traceback (most recent call last):
+  File "/home/centos/environments/umb/lib/python3.7/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/centos/code/umb/umbrella_tasks.py", line 30, in get_tunnels
+    kwargs = _extract_data(task)
+  File "/home/centos/code/umb/umbrella_tasks.py", line 7, in _extract_data
+    data = task.host.data["umbrella"]
+KeyError: 'umbrella'
+
+2021-07-12 14:09:36,765 -  nornir.core -     INFO -        run() - Running task 'get_tunnels' with args {} on 1 hosts
+2021-07-12 14:09:36,766 - nornir.core.task -    ERROR -      start() - Host 'umbrella': task 'get_tunnels' failed with traceback:
+Traceback (most recent call last):
+  File "/home/centos/environments/umb/lib/python3.7/site-packages/nornir/core/task.py", line 99, in start
+    r = self.task(self, **self.params)
+  File "/home/centos/code/umb/umbrella_tasks.py", line 30, in get_tunnels
+    kwargs = _extract_data(task)
+  File "/home/centos/code/umb/umbrella_tasks.py", line 7, in _extract_data
+    data = task.host.data["umbrella"]
+KeyError: 'umbrella'
+
+2021-07-12 14:09:36,766 -  nornir.core -  WARNING -        run() - Task 'send_command' has not been run – 0 hosts selected
+2021-07-12 14:10:09,413 -  nornir.core -     INFO -        run() - Running task 'get_tunnels' with args {} on 1 hosts
+2021-07-12 14:10:11,502 -  nornir.core -  WARNING -        run() - Task 'send_command' has not been run – 0 hosts selected
+2021-07-12 14:11:33,496 -  nornir.core -     INFO -        run() - Running task 'get_tunnels' with args {} on 1 hosts
+2021-07-12 14:11:34,072 -  nornir.core -  WARNING -        run() - Task 'send_command' has not been run – 0 hosts selected
+2021-07-12 14:12:24,458 -  nornir.core -     INFO -        run() - Running task 'get_tunnels' with args {} on 1 hosts
+2021-07-12 14:14:01,076 -  nornir.core -     INFO -        run() - Running task 'get_tunnels' with args {} on 1 hosts
+2021-07-12 14:18:29,190 -  nornir.core -     INFO -        run() - Running task 'get_tunnels' with args {} on 1 hosts
+2021-07-12 14:18:42,233 -  nornir.core -     INFO -        run() - Running task 'send_command' with args {'command': 'show inventory'} on 2 hosts
+2021-07-12 14:20:02,330 -  nornir.core -     INFO -        run() - Running task 'get_tunnels' with args {} on 1 hosts
+2021-07-12 14:20:02,672 -  nornir.core -     INFO -        run() - Running task 'send_command' with args {'command': 'show crypto session brief'} on 2 hosts

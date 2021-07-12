@@ -1,0 +1,14 @@
+---
+umbrella:
+  data:
+    org_id: 3911712
+    api_key: "523d3f4fbe344e23bc1a69ed1a3c68fe"
+    api_secret: "e1924995f6db450d948c3298de2c8007"
+
+ISR1:
+  hostname: "172.31.36.115"
+  groups: ["aws_csr1000v"]
+
+ISR2:
+  hostname: "172.31.33.35"
+  groups: ["aws_csr1000v"]

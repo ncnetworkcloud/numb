@@ -1,0 +1,23 @@
+---
+# Generic group containing global login credentials
+devices:
+  username: "admin"
+  password: "admin"
+
+# Generic groups that includes login creds and platforms
+isr:
+  platform: "cisco_iosxe"
+  groups: ["devices"]
+
+asa:
+  platform: "cisco_asa"
+  groups: ["devices"]
+
+# Specific groups that identify exact products
+aws_csr1000v:
+  groups: ["isr"]
+  data:
+    tunnel:
+      src_intf: "GigabitEthernet1"
+      dest_ip: "146.112.82.8"
+      ulay_nhop: "dhcp"
