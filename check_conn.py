@@ -10,7 +10,7 @@ from nornir import InitNornir
 from nornir.core.filter import F
 from nornir_utils.plugins.functions import print_result
 from nornir_scrapli.tasks import send_command
-from umbrella_tasks import Umbrella, get_tunnels
+from umbrella_tasks import Umbrella
 
 
 def main():
@@ -19,10 +19,14 @@ def main():
 
     umbrella = Umbrella(nr.inventory.hosts["umbrella"].data)
     tunnels = umbrella.get_tunnels()
-    print(tunnels)
+    print(f"Current Umbrella SIG tunnels: {len(tunnels)}")
+    for tunnel in tunnels:
+        print(f"  - {tunnel['name']}")
 
     nr_devices = nr.filter(~F(name="umbrella"))
-    print_result(nr_devices.run(task=send_command, command="show crypto session brief"))
+    print_result(
+        nr_devices.run(task=send_command, command="show crypto session brief")
+    )
 
 
 if __name__ == "__main__":

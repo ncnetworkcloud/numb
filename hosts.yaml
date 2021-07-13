@@ -25,10 +25,10 @@ umbrella:
       208.67.220.220: "Umbrella DNS"
       208.67.222.222: "Umbrella DNS"
 
-ISR1:
-  hostname: "172.31.36.115"
+CSR1:
+  hostname: "csr1.njrusmc.net"
   groups: ["aws_csr1000v"]
 
-ISR2:
-  hostname: "172.31.33.35"
+CSR2:
+  hostname: "csr2.njrusmc.net"
   groups: ["aws_csr1000v"]

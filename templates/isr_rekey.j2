@@ -1,4 +1,6 @@
+{# LOCAL VARIABLES IMPROVE READABILITY #}
 {% set cap = data["sig"]["client"]["authentication"]["parameters"] -%}
+{# UPDATE IPSEC PSK AND TIMESTAMP #}
 crypto ikev2 profile IKEV2_PROFILE_UMBRELLA
  description KEYS GENERATED AT: {{ data["sig"]["modifiedAt"] }}
  authentication remote pre-share key {{ cap["secret"] }}

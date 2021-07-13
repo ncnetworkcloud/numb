@@ -1,4 +1,8 @@
+{# LOCAL VARIABLES IMPROVE READABILITY #}
 {% set cap = data["sig"]["client"]["authentication"]["parameters"] -%}
+{% set tun = data["tunnel"] -%}
+{% set sites = data["umbrella_sites"] -%}
+{# MAIN CRYPTO IKE AND IPSEC CONFIGURATION #}
 crypto logging session
 crypto logging ikev2
 crypto ikev2 proposal IKEV2_PROPOSAL_UMBRELLA
@@ -9,7 +13,7 @@ crypto ikev2 policy IKEV2_POLICY_UMBRELLA
  proposal IKEV2_PROPOSAL_UMBRELLA
 crypto ikev2 profile IKEV2_PROFILE_UMBRELLA
  description KEYS GENERATED AT: {{ data["sig"]["modifiedAt"] }}
-{% for umbrella_site in data["umbrella_sites"].keys() %}
+{% for umbrella_site in sites.keys() %}
  match identity remote address {{ umbrella_site }} 255.255.255.255
 {% endfor %}
  identity local email {{ cap["id"] }}
@@ -21,20 +25,21 @@ crypto ipsec transform-set IPSEC_XFORM_AES256_SHA1 esp-aes 256 esp-sha-hmac
 crypto ipsec profile IPSEC_PROFILE_UMBRELLA 
  set transform-set IPSEC_XFORM_AES256_SHA1 
  set ikev2-profile IKEV2_PROFILE_UMBRELLA
+{# IPSEC SVTI TUNNEL TO UMBRELLA #}
 interface Tunnel100
- description UMBRELLA SIG TO: {{ data["umbrella_sites"][data["tunnel_dest_ip"]] }}
- ip unnumbered {{ data["tunnel_src_intf"] }}
+ description UMBRELLA SIG TO: {{ sites[tun["dest_ip"]] }}
+ ip unnumbered {{ tun["src_intf"] }}
  ip mtu 1440
  ip tcp adjust-mss 1400
  tunnel mode ipsec ipv4
- tunnel source {{ data["tunnel_src_intf"] }}
- tunnel destination {{ data["tunnel_dest_ip"] }}
+ tunnel source {{ tun["src_intf"] }}
+ tunnel destination {{ tun["dest_ip"] }}
  tunnel protection ipsec profile IPSEC_PROFILE_UMBRELLA
-interface Loopback 999
- ip address 10.255.255.255 255.255.255.255
-{% for umbrella_site in data["umbrella_sites"].keys() %}
-ip route {{ umbrella_site }} 255.255.255.255 {{ data["tunnel_ulay_nhop"] }}
+{# STATIC ROUTES FOR UNDERLAY TRAFFIC TO AVOID UMBRELLA #}
+{% for umbrella_site in sites.keys() %}
+ip route {{ umbrella_site }} 255.255.255.255 {{ tun["ulay_nhop"] }}
 {% endfor %}
+{# STATIC ROUTE FOR OVERLAY TRAFFIC TO CONSUME UMBRELLA #}
 ip route 0.0.0.0 0.0.0.0 Tunnel100 name UMBRELLA_SIG
 end
 {# write memory #}
